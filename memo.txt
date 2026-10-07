@@ -1,0 +1,14 @@
+// php bin/console make:migration NomDeLaTable -> créer une table ou ajouter propriété si deja créer
+// lancer le serveur php -S localhost:8000 -t public
+
+//faire migration php bin/console make:migration 
+//appliquer la migration php bin/console doctrine:migrations:migrate
+
+/* Une interfaces est une liste de methodes qui est obligé d'avoir
+l'interface peut etre relaté a un contrat, des methodes a implémenter
+ */
+
+/* pour demain le systeme de note faire en sorte de supprimer (maybe update)
+
+feed il y a un mois j'ai noté tel film
+*/

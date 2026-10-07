@@ -1,0 +1,74 @@
+@baseURL=http://localhost:8000
+
+### Listing resources
+
+POST {{baseURL}}/movies
+Content-Type: application/json
+
+{
+  "title": "Test Movie",
+  "description": "A test movie for API testing"
+}
+
+POST {{baseURL}}/movies/create
+Content-Type: application/json
+
+{
+  "titre": "Test",
+  "description": "A test movie for API testing",
+  "year": 2024,
+  "categories": [
+    {
+      "id": 1
+    }
+  ]
+}
+
+POST {{baseURL}}/movies/read
+Content-Type: application/json
+
+{
+  "id": 5
+}
+
+POST {{baseURL}}/movies/delete
+Content-Type: application/json
+
+{
+  "id": 6
+}
+
+POST {{baseURL}}/movies/update
+Content-Type: application/json
+
+{
+  "id": 5,
+  "titre": "Updated Test Movie",
+  "description": "An updated test movie for API testing",
+  "year": 2024,
+  "categories": [
+    {
+      "id": 1
+    }
+  ]
+}
+
+
+### Authenticate
+
+POST {{baseURL}}/api/login_check
+Content-Type: application/json
+
+{
+  "email": "admin@admin.com",
+  "password": "password"
+}
+
+> {% client.global.set("token",response.body.token); %}
+
+### Test get user
+
+GET {{baseURL}}/user
+Authorization: Bearer {{token}}
+
+GET {{baseURL}}/movies/list?page=1&limit=5
