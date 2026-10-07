@@ -71,4 +71,4 @@ Content-Type: application/json
 GET {{baseURL}}/user
 Authorization: Bearer {{token}}
 
-GET {{baseURL}}/movies/list?page=1&limit=5
+GET {{baseURL}}/movies/list?page=2&limit=2
