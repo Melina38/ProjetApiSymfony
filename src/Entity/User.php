@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Rating>
      */
-    #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: 'users')]
+    #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: 'user')]
     private Collection $ratings;
 
     public function __construct()
@@ -133,7 +133,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->ratings->contains($rating)) {
             $this->ratings->add($rating);
-            $rating->setUsers($this);
+            $rating->setUser($this);
         }
 
         return $this;
@@ -143,8 +143,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->ratings->removeElement($rating)) {
             // set the owning side to null (unless already changed)
-            if ($rating->getUsers() === $this) {
-                $rating->setUsers(null);
+            if ($rating->getUser() === $this) {
+                $rating->setUser(null);
             }
         }
 

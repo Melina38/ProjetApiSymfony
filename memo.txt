@@ -11,4 +11,14 @@ l'interface peut etre relaté a un contrat, des methodes a implémenter
 /* pour demain le systeme de note faire en sorte de supprimer (maybe update)
 
 feed il y a un mois j'ai noté tel film
+
+faire une command php bin/console make:command      -> app:init-data
+
+
+bibli shadcn
+phosfort icon
+gsap pour animation 
+webjl qu'est ce que c?
+
+reseigner diff mysql et mariadb
 */

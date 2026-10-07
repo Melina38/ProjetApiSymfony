@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RatingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: RatingRepository::class)]
 class Rating
@@ -12,19 +13,22 @@ class Rating
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['rating:read'])]
     private ?int $id = null;
 
+    #[Groups(['rating:read'])]
     #[ORM\Column]
     private ?int $rating = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['rating:read'])]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTime $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'ratings')]
     private ?Movie $movie = null;
 
     #[ORM\ManyToOne(inversedBy: 'ratings')]
-    private ?User $users = null;
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -67,14 +71,14 @@ class Rating
         return $this;
     }
 
-    public function getUsers(): ?User
+    public function getUser(): ?User
     {
-        return $this->users;
+        return $this->user;
     }
 
-    public function setUsers(?User $users): static
+    public function setUser(?User $user): static
     {
-        $this->users = $users;
+        $this->user = $user;
 
         return $this;
     }
