@@ -71,7 +71,7 @@ Content-Type: application/json
 GET {{baseURL}}/api/user
 Authorization: Bearer {{token}}
 
-GET {{baseURL}}/movies/list?page=2&limit=2
+GET {{baseURL}}/movies/list?page=1&limit=10
 
 POST {{baseURL}}/api/ratings
 Content-Type: application/json
@@ -89,4 +89,13 @@ Authorization: Bearer {{token}}
     "rating": 1
 }
 GET {{baseURL}}/api/ratings
+Authorization: Bearer {{token}}
+
+DELETE {{baseURL}}/api/ratings/105
+Authorization: Bearer {{token}}
+
+GET {{baseURL}}/api/movies/list
+Authorization: Bearer {{token}}
+
+GET {{baseURL}}/api/movies/list?page=1&limit=4
 Authorization: Bearer {{token}}

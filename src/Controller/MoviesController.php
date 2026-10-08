@@ -26,7 +26,7 @@ final class MoviesController extends AbstractController
         return $this->json($queryDTO);
     }
 
-    #[Route('/movies/list', name: 'app_movies_list')]
+    #[Route('/api/movies/list', name: 'app_movies_list', methods: ['GET'])]
     public function list(
         MovieRepository $movieRepository,
         #[MapQueryString] PaginationDTO $paginationDTO
