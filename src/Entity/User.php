@@ -42,9 +42,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Rating::class, mappedBy: 'user')]
     private Collection $ratings;
 
+    #[ORM\ManyToMany(targetEntity: User::class)]
+    private Collection $following;
+
     public function __construct()
     {
         $this->ratings = new ArrayCollection();
+        $this->following = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,6 +152,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $rating->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFollowing(): Collection
+    {
+        return $this->following;
+    }
+
+    public function addFollowing(User $user): static
+    {
+        if (!$this->following->contains($user)) {
+            $this->following->add($user);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowing(User $user): static
+    {
+        $this->following->removeElement($user);
 
         return $this;
     }

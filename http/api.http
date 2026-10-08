@@ -99,3 +99,15 @@ Authorization: Bearer {{token}}
 
 GET {{baseURL}}/api/movies/list?page=1&limit=4
 Authorization: Bearer {{token}}
+
+
+
+
+POST {{baseURL}}/api/users/2/follow
+Authorization: Bearer {{token}}
+
+GET {{baseURL}}/api/users
+Authorization: Bearer {{token}}
+
+DELETE {{baseURL}}/api/users/2/follow
+Authorization: Bearer {{token}}

@@ -35,7 +35,7 @@ class MovieNormalizer implements NormalizerInterface
                 $object
             );
 
-            $data['maNote'] = $rating?->getRating();
+            $data['myRating'] = $rating?->getRating();
         }
 
         return $data;
