@@ -1,12 +1,18 @@
 // php bin/console make:migration NomDeLaTable -> créer une table ou ajouter propriété si deja créer
 // lancer le serveur php -S localhost:8000 -t public
 
+// php bin/console debug:router pour voir toute les routes
+
 //faire migration php bin/console make:migration 
 //appliquer la migration php bin/console doctrine:migrations:migrate
 
 /* Une interfaces est une liste de methodes qui est obligé d'avoir
 l'interface peut etre relaté a un contrat, des methodes a implémenter
  */
+
+
+//pour prendre une valeur d'une clé spécifique
+//return $this->json(json_decode($request->getContent(), true)['title']);
 
 /* pour demain le systeme de note faire en sorte de supprimer (maybe update)
 

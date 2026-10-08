@@ -33,10 +33,8 @@ class InitDataCommand
 
         ini_set('memory_limit', '2048M');
 
-        // Cache des catégories déjà récupérées
         $categories = [];
 
-        // Compteurs
         $imported = 0;
         $duplicates = 0;
 
@@ -53,7 +51,6 @@ class InitDataCommand
                 continue;
             }
 
-            // Récupération des données du film
             $title = $movieData['title'] ?? '';
 
             $year = isset($movieData['year']['$numberInt'])
@@ -62,41 +59,34 @@ class InitDataCommand
 
             $description = $movieData['plot'] ?? '';
 
-            // Vérifie si le film existe déjà uniquement avec son titre
             $existingMovie = $this->entityManager
                 ->getRepository(Movie::class)
                 ->findOneBy([
-                    'titre' => $title,
+                    'title' => $title,
                 ]);
 
-            // Si le film existe déjà, on passe au suivant
             if ($existingMovie) {
                 $duplicates++;
                 continue;
             }
 
-            // Création du film
             $movie = new Movie();
 
             $movie
-                ->setTitre($title)
+                ->setTitle($title)
                 ->setDescription($description)
                 ->setYear($year);
 
-            // Gestion des catégories
             foreach ($movieData['genres'] ?? [] as $genreName) {
 
-                // Vérifie si la catégorie est déjà dans le cache
                 if (!isset($categories[$genreName])) {
 
-                    // Recherche la catégorie en base
                     $category = $this->entityManager
                         ->getRepository(Category::class)
                         ->findOneBy([
                             'name' => $genreName,
                         ]);
 
-                    // Si elle n'existe pas, on la crée
                     if (!$category) {
                         $category = new Category();
                         $category->setName($genreName);
@@ -104,22 +94,18 @@ class InitDataCommand
                         $this->entityManager->persist($category);
                     }
 
-                    // Ajoute la catégorie au cache
                     $categories[$genreName] = $category;
                 }
 
-                // Associe la catégorie au film
                 $movie->addCategory(
                     $categories[$genreName]
                 );
             }
 
-            // Prépare le film pour l'enregistrement
             $this->entityManager->persist($movie);
 
             $imported++;
 
-            // On s'arrête après 150 nouveaux films
             if ($imported >= 150) {
                 break;
             }
@@ -127,7 +113,6 @@ class InitDataCommand
 
         fclose($file);
 
-        // Enregistre les films, catégories et relations en base
         $this->entityManager->flush();
 
         $io->success(

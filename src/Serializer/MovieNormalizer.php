@@ -22,7 +22,7 @@ class MovieNormalizer implements NormalizerInterface
     ): array {
         $data = [
             'id' => $object->getId(),
-            'titre' => $object->getTitre(),
+            'title' => $object->getTitle(),
             'description' => $object->getDescription(),
             'year' => $object->getYear(),
         ];

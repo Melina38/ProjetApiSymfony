@@ -19,7 +19,7 @@ class Movie
 
     #[Groups(['movie:write', 'movie:read'])]
     #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    private ?string $title = null;
 
     #[Groups(['movie:write', 'movie:read'])]
     #[ORM\Column(type: Types::TEXT)]
@@ -52,14 +52,14 @@ class Movie
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titre;
+        return $this->title;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitle(string $title): static
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }

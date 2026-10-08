@@ -5,16 +5,14 @@
 POST {{baseURL}}/movies
 Content-Type: application/json
 
-{
-  "title": "Test Movie",
-  "description": "A test movie for API testing"
-}
+GET {{baseURL}}/movies/1
+Content-Type: application/json
 
 POST {{baseURL}}/movies/create
 Content-Type: application/json
 
 {
-  "titre": "Test",
+  "title": "Test2",
   "description": "A test movie for API testing",
   "year": 2024,
   "categories": [
@@ -31,19 +29,19 @@ Content-Type: application/json
   "id": 100
 }
 
-POST {{baseURL}}/movies/delete
+DELETE {{baseURL}}/movies/6
 Content-Type: application/json
 
 {
   "id": 6
 }
 
-POST {{baseURL}}/movies/update
+PUT {{baseURL}}/movies/update
 Content-Type: application/json
 
 {
   "id": 5,
-  "titre": "Updated Test Movie",
+  "title": "Updated Test Movie",
   "description": "An updated test movie for API testing",
   "year": 2024,
   "categories": [

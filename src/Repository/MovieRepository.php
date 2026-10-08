@@ -16,10 +16,10 @@ class MovieRepository extends ServiceEntityRepository
         parent::__construct($registry, Movie::class);
     }
 
-    public function createMovie(string $titre, string $description, int $year, array $categories): Movie
+    public function createMovie(string $title, string $description, int $year, array $categories): Movie
     {
         $movie = new Movie();
-        $movie->setTitre($titre);
+        $movie->setTitle($title);
         $movie->setDescription($description);
         $movie->setYear($year);
 

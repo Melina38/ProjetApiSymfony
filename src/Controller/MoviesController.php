@@ -12,9 +12,6 @@ use App\Repository\MovieRepository;
 use App\Model\PaginationDTO;
 use App\Model\Pagination;
 
-/* modifier les hhtp pour mettre DELETE pour la route pour delete PATCH pour update et GET pour read et POST pour create*/
-// php bin/console debug:router pour voir toute les routes
-
 final class MoviesController extends AbstractController
 {
     #[Route('/movies', name: 'app_movies')]
@@ -48,20 +45,20 @@ final class MoviesController extends AbstractController
         return $this->json($pagination);
     }
 
-    /*#[Route('/movies/{id}', name: 'app_movies_id')]
+    #[Route('/movies/{id}', name: 'app_movies_id')]
     public function movie1(MovieRepository $movieRepository, int $id): JsonResponse
     {
         $movies = $movieRepository->find($id);
 
         return $this->json($movies, context: ['groups' => 'movie:read']);
-    }*/
+    }
 
     #[Route('/movies/create', name: 'app_movies_create', methods: ['POST'])]
     public function create(MovieRepository $movieRepository, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         //dd($data);
-        $movie = $movieRepository->createMovie($data['titre'], $data['description'], $data['year'], $data['categories']);
+        $movie = $movieRepository->createMovie($data['title'], $data['description'], $data['year'], $data['categories']);
         return $this->json($movie);
     }
 
@@ -73,7 +70,7 @@ final class MoviesController extends AbstractController
         return $this->json($movie);
     }
 
-    #[Route('/movies/delete', name: 'app_movies_delete', methods: ['POST'])]
+    #[Route('/movies/delete', name: 'app_movies_delete', methods: ['DELETE'])]
     public function delete(MovieRepository $movieRepository, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -86,13 +83,13 @@ final class MoviesController extends AbstractController
         }
     }
 
-    #[Route('/movies/update', name: 'app_movies_update', methods: ['POST'])]
+    #[Route('/movies/update', name: 'app_movies_update', methods: ['PUT'])]
     public function update(MovieRepository $movieRepository, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         $movie = $movieRepository->readMovie($data['id']);
         if ($movie) {
-            $movie->setTitre($data['titre']);
+            $movie->setTitle($data['title']);
             $movie->setDescription($data['description']);
             $movie->setYear($data['year']);
             $movieRepository->updateMovie($movie);
@@ -103,6 +100,3 @@ final class MoviesController extends AbstractController
         }
     }
 }
-
-//pour prendre une valeur d'une clé spécifique
-//return $this->json(json_decode($request->getContent(), true)['title']);
