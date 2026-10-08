@@ -37,6 +37,7 @@ class RatingRepository extends ServiceEntityRepository
         Rating $rating,
         int $ratingNumber
     ): Rating {
+
         $rating->setRating($ratingNumber);
         $rating->setDate(new \DateTime());
 

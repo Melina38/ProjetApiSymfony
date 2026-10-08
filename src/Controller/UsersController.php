@@ -96,7 +96,7 @@ final class UsersController extends AbstractController
         $userRepository->unfollow($user, $userToUnfollow);
 
         return $this->json([
-            'message' => 'Utilisateur non suivi'
+            'message' => 'Vous ne suivez plus cet utilisateur'
         ]);
     }
 }

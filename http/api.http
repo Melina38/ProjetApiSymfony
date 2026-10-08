@@ -36,15 +36,15 @@ DELETE {{baseURL}}/movies/delete
 Content-Type: application/json
 
 {
-  "id": 10
+  "id": 15
 }
 
 PUT {{baseURL}}/movies/update
 Content-Type: application/json
 
 {
-  "id": 5,
-  "title": "Updated Test Movie",
+  "id": 16,
+  "title": "Test2",
   "description": "An updated test movie for API testing",
   "year": 2024,
   "categories": [
@@ -77,20 +77,20 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "movieId": 102,
-    "rating": 1
+    "movieId": 63,
+    "rating": 3
 }
-PUT {{baseURL}}/api/ratings/3
+PUT {{baseURL}}/api/ratings/10
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "rating": 1
+    "rating": 2
 }
 GET {{baseURL}}/api/ratings
 Authorization: Bearer {{token}}
 
-DELETE {{baseURL}}/api/ratings/105
+DELETE {{baseURL}}/api/ratings/3
 Authorization: Bearer {{token}}
 
 GET {{baseURL}}/api/movies/list
@@ -99,7 +99,7 @@ Authorization: Bearer {{token}}
 GET {{baseURL}}/api/movies/list?page=1&limit=4
 Authorization: Bearer {{token}}
 
-POST {{baseURL}}/api/users/2/follow
+POST {{baseURL}}/api/users/3/follow
 Authorization: Bearer {{token}}
 
 GET {{baseURL}}/api/users

@@ -32,7 +32,6 @@ class MovieRepository extends ServiceEntityRepository
 
         $this->getEntityManager()->persist($movie);
         $this->getEntityManager()->flush();
-        dd($movie);
         return $movie;
     }
     public function readMovie(int $id): ?Movie
