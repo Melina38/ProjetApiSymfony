@@ -1,5 +1,5 @@
 @baseURL=http://localhost:8000
-@token =eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3OTEzODIxNDEsImV4cCI6MTc5MTM4NTc0MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWRtaW5AYWRtaW4uY29tIn0.d7FnlL8XKNbIjMVcAvrPPwVgyh8I_55-J2UZq0tlxAZ8obmgBQe7G3-aLT967ClEGtI2u1_kQ1mxlDWQJ8K2IBYVVnIW2cNKFvJK1urQ9ak_68DnLol1m77maoNEUiqU9nx0Ah7bhcGIfu9VkQ2itHcCkpbAdJ0wLdBw8FgatJ7Ivo5FbAekT_l2beDncv6f37k_9EXOeiEB4bkwTExtYPSp1TBrqu_W4qgjxXynb3KIgaC9ecJm2mTKRlVDnDGGRkO5N2M3E6Hvs2WMoercZv5-tyf9TFSwHKA0RWfxw7U-8c2tfkVums7L320bFMqsmFObc--qLhlMMiYlHiHTuQ
+//@token =eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3OTEzODIxNDEsImV4cCI6MTc5MTM4NTc0MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWRtaW5AYWRtaW4uY29tIn0.d7FnlL8XKNbIjMVcAvrPPwVgyh8I_55-J2UZq0tlxAZ8obmgBQe7G3-aLT967ClEGtI2u1_kQ1mxlDWQJ8K2IBYVVnIW2cNKFvJK1urQ9ak_68DnLol1m77maoNEUiqU9nx0Ah7bhcGIfu9VkQ2itHcCkpbAdJ0wLdBw8FgatJ7Ivo5FbAekT_l2beDncv6f37k_9EXOeiEB4bkwTExtYPSp1TBrqu_W4qgjxXynb3KIgaC9ecJm2mTKRlVDnDGGRkO5N2M3E6Hvs2WMoercZv5-tyf9TFSwHKA0RWfxw7U-8c2tfkVums7L320bFMqsmFObc--qLhlMMiYlHiHTuQ
 ### Listing resources
 
 POST {{baseURL}}/movies
@@ -28,7 +28,7 @@ POST {{baseURL}}/movies/read
 Content-Type: application/json
 
 {
-  "id": 5
+  "id": 100
 }
 
 POST {{baseURL}}/movies/delete
@@ -78,7 +78,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "movieId": 3,
+    "movieId": 102,
     "rating": 1
 }
 PUT {{baseURL}}/api/ratings/3

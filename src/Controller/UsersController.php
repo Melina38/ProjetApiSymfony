@@ -21,6 +21,6 @@ final class UsersController extends AbstractController
             ], 401);
         }
 
-        return $this->json($user);
+        return $this->json($user, context: ['groups' => 'user:read']);
     }
 }
