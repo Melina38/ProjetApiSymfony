@@ -1,9 +1,12 @@
 @baseURL=http://localhost:8000
-//@token =eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3OTEzODIxNDEsImV4cCI6MTc5MTM4NTc0MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiYWRtaW5AYWRtaW4uY29tIn0.d7FnlL8XKNbIjMVcAvrPPwVgyh8I_55-J2UZq0tlxAZ8obmgBQe7G3-aLT967ClEGtI2u1_kQ1mxlDWQJ8K2IBYVVnIW2cNKFvJK1urQ9ak_68DnLol1m77maoNEUiqU9nx0Ah7bhcGIfu9VkQ2itHcCkpbAdJ0wLdBw8FgatJ7Ivo5FbAekT_l2beDncv6f37k_9EXOeiEB4bkwTExtYPSp1TBrqu_W4qgjxXynb3KIgaC9ecJm2mTKRlVDnDGGRkO5N2M3E6Hvs2WMoercZv5-tyf9TFSwHKA0RWfxw7U-8c2tfkVums7L320bFMqsmFObc--qLhlMMiYlHiHTuQ
 ### Listing resources
 
-POST {{baseURL}}/movies
-Content-Type: application/json
+GET {{baseURL}}/movies
+GET {{baseURL}}/movies?title=my
+GET {{baseURL}}/movies?year=2026
+GET {{baseURL}}/movies?title=my&year=1932
+GET {{baseURL}}/movies?page=2&limit=2
+GET {{baseURL}}/movies?title=o&page=2&limit=1
 
 GET {{baseURL}}/movies/1
 Content-Type: application/json
@@ -12,12 +15,12 @@ POST {{baseURL}}/movies/create
 Content-Type: application/json
 
 {
-  "title": "Test2",
+  "title": "Test3",
   "description": "A test movie for API testing",
   "year": 2024,
   "categories": [
     {
-      "id": 1
+      "id": 3
     }
   ]
 }
@@ -29,11 +32,11 @@ Content-Type: application/json
   "id": 100
 }
 
-DELETE {{baseURL}}/movies/6
+DELETE {{baseURL}}/movies/delete
 Content-Type: application/json
 
 {
-  "id": 6
+  "id": 10
 }
 
 PUT {{baseURL}}/movies/update
@@ -69,8 +72,6 @@ Content-Type: application/json
 GET {{baseURL}}/api/user
 Authorization: Bearer {{token}}
 
-GET {{baseURL}}/movies/list?page=1&limit=10
-
 POST {{baseURL}}/api/ratings
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -98,9 +99,6 @@ Authorization: Bearer {{token}}
 GET {{baseURL}}/api/movies/list?page=1&limit=4
 Authorization: Bearer {{token}}
 
-
-
-
 POST {{baseURL}}/api/users/2/follow
 Authorization: Bearer {{token}}
 
@@ -109,3 +107,7 @@ Authorization: Bearer {{token}}
 
 DELETE {{baseURL}}/api/users/2/follow
 Authorization: Bearer {{token}}
+
+
+
+

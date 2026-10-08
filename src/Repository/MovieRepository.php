@@ -70,28 +70,57 @@ class MovieRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-//    /**
-//     * @return Movie[] Returns an array of Movie objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function searchMovies(
+        ?string $title,
+        ?int $year,
+        int $page,
+        int $limit
+    ): array {
+        $offset = ($page - 1) * $limit;
 
-//    public function findOneBySomeField($value): ?Movie
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $queryBuilder = $this->createQueryBuilder('m');
+
+        if ($title !== null) {
+            $queryBuilder
+                ->andWhere('m.title LIKE :title')
+                ->setParameter('title', '%' . $title . '%');
+        }
+
+        if ($year !== null) {
+            $queryBuilder
+                ->andWhere('m.year = :year')
+                ->setParameter('year', $year);
+        }
+
+        return $queryBuilder
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function countSearchMovies(
+        ?string $title,
+        ?int $year
+    ): int {
+        $queryBuilder = $this->createQueryBuilder('m')
+            ->select('COUNT(m.id)');
+
+        if ($title !== null) {
+            $queryBuilder
+                ->andWhere('m.title LIKE :title')
+                ->setParameter('title', '%' . $title . '%');
+        }
+
+        if ($year !== null) {
+            $queryBuilder
+                ->andWhere('m.year = :year')
+                ->setParameter('year', $year);
+        }
+
+        return (int) $queryBuilder
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 }

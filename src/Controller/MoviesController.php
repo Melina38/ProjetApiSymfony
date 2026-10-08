@@ -14,13 +14,30 @@ use App\Model\Pagination;
 
 final class MoviesController extends AbstractController
 {
-    #[Route('/movies', name: 'app_movies')]
+    #[Route('/movies', name: 'app_movies', methods: ['GET'])]
     public function index(
-        Request $request,
+        MovieRepository $movieRepository,
         #[MapQueryString] QueryDTO $queryDTO
-    ): JsonResponse
-    {
-        return $this->json($queryDTO);
+    ): JsonResponse {
+        $movies = $movieRepository->searchMovies(
+            $queryDTO->title,
+            $queryDTO->year,
+            $queryDTO->page,
+            $queryDTO->limit
+        );
+
+        $total = $movieRepository->countSearchMovies(
+            $queryDTO->title,
+            $queryDTO->year
+        );
+
+        return $this->json([
+            'items' => $movies,
+            'total' => $total,
+            'page' => $queryDTO->page,
+            'limit' => $queryDTO->limit,
+            'lastPage' => (int) ceil($total / $queryDTO->limit),
+        ]);
     }
 
     #[Route('/api/movies/list', name: 'app_movies_list', methods: ['GET'])]
@@ -45,12 +62,23 @@ final class MoviesController extends AbstractController
         return $this->json($pagination);
     }
 
-    #[Route('/movies/{id}', name: 'app_movies_id')]
-    public function movie1(MovieRepository $movieRepository, int $id): JsonResponse
-    {
-        $movies = $movieRepository->find($id);
+    #[Route('/movies/{id}', name: 'app_movies_id', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function movie1(
+        MovieRepository $movieRepository,
+        int $id
+    ): JsonResponse {
+        $movie = $movieRepository->find($id);
 
-        return $this->json($movies, context: ['groups' => 'movie:read']);
+        if (!$movie) {
+            return $this->json([
+                'message' => 'Movie not found'
+            ], 404);
+        }
+
+        return $this->json(
+            $movie,
+            context: ['groups' => ['movie:read']]
+        );
     }
 
     #[Route('/movies/create', name: 'app_movies_create', methods: ['POST'])]
@@ -99,4 +127,5 @@ final class MoviesController extends AbstractController
 
         }
     }
+    //faire des
 }
