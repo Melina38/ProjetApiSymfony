@@ -40,10 +40,22 @@ L'API permet notamment de :
 Installer les dépendances :
 ```bash
 composer install
-
-Lancer le serveur
+```
+Lancer le serveur :
 ```bash
 php -S localhost:8000 -t public
+```
+## Commande personalisée
+
+Importer 150 films :
+```bash
+php bin/console make:command
+```
+Nom de la commande: app:init-data
+
+## Tester les requêtes
+
+Dans le fichier api.http de mon folder http, vous trouverez toutes les requêtes possibles de mon API. Il faudra rajouter l'extension HttpYack ou équivalent sur votre IDE.
 
 # Structure de la base de données
 
